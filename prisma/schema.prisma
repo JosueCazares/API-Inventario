@@ -18,5 +18,5 @@ model Inventario {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   cantidad    Int
-  producto_Id Int
+  producto_Id Json
 }
