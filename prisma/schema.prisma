@@ -13,10 +13,95 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+//V1
 model Inventario {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   cantidad    Int
-  producto_Id Json
+  producto    Producto @relation(fields: [producto_Id], references: [id])
+  producto_Id Int
+}
+
+//V1
+model Producto {
+  id            Int              @id @default(autoincrement())
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  sucursal      String
+  nombre        String
+  descripcion   String?
+  unidadMedida  UNIDADMEDIDA
+  cantidad      Int
+  precio        Float
+  estatus       Boolean
+  inventario    Inventario[]
+  recetas       RecetaProducto[]
+  detalleVentas DetalleVenta[]
+}
+
+//FALTA
+model Venta {
+  id           Int            @id @default(autoincrement())
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  detalleVenta DetalleVenta[]
+}
+
+//FALTA
+model DetalleVenta {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  venta       Venta    @relation(fields: [venta_Id], references: [id])
+  venta_Id    Int
+  producto    Producto @relation(fields: [producto_Id], references: [id])
+  producto_Id Int
+  cantidad    Int
+  precio      Float
+}
+
+//V1 CREADA
+model Receta {
+  id          Int              @id @default(autoincrement())
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  nombre      String
+  descripcion String?
+  cantidad    Int
+  producto    RecetaProducto[]
+}
+
+//V1 CREADA
+model RecetaProducto {
+  id          Int      @id @default(autoincrement())
+  receta      Receta   @relation(fields: [receta_Id], references: [id])
+  receta_Id   Int
+  producto    Producto @relation(fields: [producto_Id], references: [id])
+  producto_Id Int
+  cantidad    Int
+}
+
+//V1 CREADA
+model Produccion {
+  id           Int        @id @default(autoincrement())
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  fecha_inicio DateTime
+  fecha_fin    DateTime
+  estado       ESTADOPROD
+}
+
+//V1 CREADA
+enum UNIDADMEDIDA {
+  KG
+  GR
+  TN
+  COSTAL
+}
+
+enum ESTADOPROD {
+  PENDIENTE
+  EN_PROCESO
+  TERMINADO
 }

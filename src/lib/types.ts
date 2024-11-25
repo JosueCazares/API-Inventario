@@ -1,6 +1,7 @@
  import type{
     Inventario,
-    
+    Producto,
+    UNIDADMEDIDA
 } from '@prisma/client'; 
 
 export type APIResponse<T> = {
@@ -18,4 +19,6 @@ export type APIResponse<T> = {
 
 export type{
     Inventario,
+    Producto,
+    UNIDADMEDIDA
 }

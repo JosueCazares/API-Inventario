@@ -13,12 +13,19 @@ export class PrismaInventarioDao {
   }
 
   //SE PUSO EL ID COMO STRING POR QUE EN EL POSTMAN NO ME DEJABA MANDAR COMO NUMERO SOLO CADENA
-  async getById(id:string): Promise<Inventario | null> {
-    let newId = parseInt(id)
-    return await prisma.inventario.findUnique({
+  //ENDPOINT PARA BUSQUEDA DE INVENTARIO POR POR ID DEL PRODUCTO
+  async getById(id:number): Promise<Inventario | null> {
+    //let newId = parseInt(id)
+    return await prisma.inventario.findFirst({
         where:{
-            id: newId
+            producto_Id: id
         }
+    })
+  }
+
+  async create(inventarioData: Omit<Inventario, 'id' | 'createdAt' | 'updatedAt'>): Promise<Inventario> {
+    return await prisma.inventario.create({
+      data: inventarioData
     })
   }
 }
