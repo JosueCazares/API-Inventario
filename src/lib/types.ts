@@ -3,7 +3,8 @@
     Producto,
     UNIDADMEDIDA,
     Receta,
-    RecetaProducto
+    RecetaProducto,
+    Produccion
 } from '@prisma/client'; 
 
 export type APIResponse<T> = {
@@ -24,5 +25,6 @@ export type{
     Producto,
     UNIDADMEDIDA,
     Receta,
-    RecetaProducto
+    RecetaProducto,
+    Produccion
 }
