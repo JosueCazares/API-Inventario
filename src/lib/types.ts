@@ -2,7 +2,8 @@
     Inventario,
     Producto,
     UNIDADMEDIDA,
-    Receta
+    Receta,
+    RecetaProducto
 } from '@prisma/client'; 
 
 export type APIResponse<T> = {
@@ -22,5 +23,6 @@ export type{
     Inventario,
     Producto,
     UNIDADMEDIDA,
-    Receta
+    Receta,
+    RecetaProducto
 }
