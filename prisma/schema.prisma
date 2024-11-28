@@ -32,12 +32,14 @@ model Producto {
   nombre        String
   descripcion   String?
   unidadMedida  UNIDADMEDIDA
-  cantidad      Int
+  cantidad      Float
   precio        Float
   estatus       Boolean
+  tipo          TIPOPRODUCTO
   inventario    Inventario[]
   recetas       RecetaProducto[]
   detalleVentas DetalleVenta[]
+  Produccion    Produccion[]
 }
 
 //FALTA
@@ -90,6 +92,8 @@ model Produccion {
   fecha_inicio DateTime
   fecha_fin    DateTime
   estado       ESTADOPROD
+  producto     Producto   @relation(fields: [producto_Id], references: [id])
+  producto_Id  Int
 }
 
 //V1 CREADA
@@ -98,10 +102,16 @@ enum UNIDADMEDIDA {
   GR
   TN
   COSTAL
+  LITRO
 }
 
 enum ESTADOPROD {
   PENDIENTE
   EN_PROCESO
   TERMINADO
+}
+
+enum TIPOPRODUCTO {
+  INGREDIENTE
+  PRODUCTO_TERMINADO
 }

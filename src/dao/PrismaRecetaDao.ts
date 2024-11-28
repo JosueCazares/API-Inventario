@@ -5,4 +5,10 @@ export class PrismaRecetaDao {
   async getAllReceta(): Promise<Receta[]> {
     return await prisma.receta.findMany()
   }
+
+  async create(recetaData:Omit<Receta, 'id' | 'createdAt' | 'updatedAt'>): Promise<Receta> {
+    return await prisma.receta.create({
+      data: recetaData
+    })
+  }
 }
