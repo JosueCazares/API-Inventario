@@ -23,6 +23,35 @@ export class PrismaInventarioDao {
     })
   }
 
+  async getByIdProducto(id: number): Promise<Inventario | null> {
+    return await prisma.inventario.findFirst({
+      where:{
+        producto_Id:id
+      }
+    })
+  }
+
+  async getByProductoId(id: number): Promise<Inventario | null> {
+    return await prisma.inventario.findFirst({
+      where:{
+        producto:{
+          id: id
+        }
+      }
+    })
+  }
+
+  async reduceInventario(id: number, cantidad: number) {
+    return  await prisma.inventario.updateMany({
+     where: {producto_Id: id},
+     data:{
+        cantidad:{
+          decrement: cantidad
+        }
+     }
+    })
+  }
+
   async create(inventarioData: Omit<Inventario, 'id' | 'createdAt' | 'updatedAt'>): Promise<Inventario> {
     return await prisma.inventario.create({
       data: inventarioData

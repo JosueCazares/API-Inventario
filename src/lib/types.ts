@@ -6,7 +6,8 @@
     RecetaProducto,
     Produccion,
     Venta,
-    DetalleVenta
+    DetalleVenta,
+    ESTADOPROD
 } from '@prisma/client'; 
 
 export type APIResponse<T> = {
@@ -30,5 +31,6 @@ export type{
     RecetaProducto,
     Produccion,
     Venta,
-    DetalleVenta
+    DetalleVenta,
+    ESTADOPROD
 }

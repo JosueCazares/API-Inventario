@@ -39,18 +39,20 @@ model Producto {
   inventario    Inventario[]
   recetas       RecetaProducto[]
   detalleVentas DetalleVenta[]
-  Produccion    Produccion[]
 }
 
-//FALTA
+//v1
 model Venta {
   id           Int            @id @default(autoincrement())
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
+  sucursal     String
+  estado       ESTADOVENTA
+  metodoPago   METODOPAGO
   detalleVenta DetalleVenta[]
 }
 
-//FALTA
+//V1
 model DetalleVenta {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
@@ -72,6 +74,7 @@ model Receta {
   descripcion String?
   cantidad    Int
   producto    RecetaProducto[]
+  produccion  Produccion[]
 }
 
 //V1 CREADA
@@ -92,8 +95,8 @@ model Produccion {
   fecha_inicio DateTime
   fecha_fin    DateTime
   estado       ESTADOPROD
-  producto     Producto   @relation(fields: [producto_Id], references: [id])
-  producto_Id  Int
+  receta       Receta     @relation(fields: [receta_Id], references: [id])
+  receta_Id    Int
 }
 
 //V1 CREADA
@@ -114,4 +117,16 @@ enum ESTADOPROD {
 enum TIPOPRODUCTO {
   INGREDIENTE
   PRODUCTO_TERMINADO
+}
+
+enum ESTADOVENTA {
+  PENDIENTE
+  PAGADO
+  CANCELADO
+}
+
+enum METODOPAGO {
+  EFECTIVO
+  TARJETA
+  TRANSFERENCIA
 }
