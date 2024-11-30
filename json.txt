@@ -1,0 +1,105 @@
+JSON PRODUCTOS 
+	{
+    "nombre": "Harina",
+    "descripcion": "Harina",
+    "unidadMedida": "KG",
+    "precio": 100,
+    "cantidad": 5,
+    "tipo": "INGREDIENTE",
+    "sucursal": "CENTRAL",
+    "estatus": true
+	},
+{
+    "nombre": "Mantequilla",
+    "descripcion": "Mantequilla",
+    "unidadMedida": "GR",
+    "precio": 600,
+    "cantidad": 2500,
+    "tipo": "INGREDIENTE",
+    "sucursal": "CENTRAL",
+    "estatus": true
+},
+{
+    "nombre": "Azúcar",
+    "descripcion": "Azúcar",
+    "unidadMedida": "GR",
+    "precio": 90,
+    "cantidad": 2500,
+    "tipo": "INGREDIENTE",
+    "sucursal": "CENTRAL",
+    "estatus": true
+},
+{
+    "nombre": "Nueces",
+    "descripcion": "Nueces",
+    "unidadMedida": "GR",
+    "precio": 900,
+    "cantidad": 1500,
+    "tipo": "INGREDIENTE",
+    "sucursal": "CENTRAL",
+    "estatus": true
+},
+{
+    "nombre": "Leche",
+    "descripcion": "Leche",
+    "unidadMedida": "LITRO",
+    "precio": 25,
+    "cantidad": 1,
+    "tipo": "INGREDIENTE",
+    "sucursal": "CENTRAL",
+    "estatus": true
+},
+{
+    "nombre": "Sal",
+    "descripcion": "Sal",
+    "unidadMedida": "GR",
+    "precio": 3,
+    "cantidad": 50,
+    "tipo": "INGREDIENTE",
+    "sucursal": "CENTRAL",
+    "estatus": true
+},
+{
+    "nombre": "Polvo para hornear",
+    "descripcion": "Polvo para hornear",
+    "unidadMedida": "GR",
+    "precio": 10,
+    "cantidad": 50,
+    "tipo": "INGREDIENTE",
+    "sucursal": "CENTRAL",
+    "estatus": true
+},
+{
+    "nombre": "Esencia De Vainilla",
+    "descripcion": "Esencia De Vainilla",
+    "unidadMedida": "GR",
+    "precio": 20,
+    "cantidad": 20,
+    "tipo": "INGREDIENTE",
+    "sucursal": "CENTRAL",
+    "estatus": true
+},
+JSON RECETA CREAR 
+
+{
+    "nombre":"Sorpresa Nuez Don Galleto",
+    "descripcion":"Galleta de nuez",
+    "cantidad":1,
+    "productos":[{"producto_Id":1,"cantidad":5},
+                 {"producto_Id":2,"cantidad":2500},
+                 {"producto_Id":3,"cantidad":2500},
+                 {"producto_Id":4,"cantidad":1500},
+                 {"producto_Id":5,"cantidad":1},
+                 {"producto_Id":6,"cantidad":50},
+                 {"producto_Id":7,"cantidad":50},
+                 {"producto_Id":8,"cantidad":20}]
+}
+
+
+
+
+
+
+
+
+
