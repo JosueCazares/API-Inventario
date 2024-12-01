@@ -19,9 +19,9 @@ const detalleVentaDao = new PrismaDetalleVentaDao()
 export class CreateDetalleVentaCommands {
     async execute(data: CreateDetalleVentaDto): Promise<DetalleVenta> {
         const dataValidate = ZodDetalleVentaObj.parse(data)
-
         //VERIFICACION DE EXISTENCIA DEL PRODUCTO
-        const productFind = await productoDao.getById(dataValidate.producto_Id)
+        //VALIDACION DE DATOSESTA MA ESTE ENDPOITN POR QUE LA BUSQUEDA DEL PRODUCTO NO IMPORTA SI ES INGREDIENTE O PRODUCCION
+        const productFind = await productoDao.getProductByIdProduccion(dataValidate.producto_Id)
 
         if(!productFind){
             throw new CustomError('Producto no encontrado',404)

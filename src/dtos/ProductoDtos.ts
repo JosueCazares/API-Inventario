@@ -1,4 +1,4 @@
-import type {UNIDADMEDIDA} from '@/lib/types'
+import type {UNIDADMEDIDA,TIPOPRODUCTO} from '@/lib/types'
 export interface CreateProductoDto {
     cantidad: number,
     sucursal: string,
@@ -6,7 +6,8 @@ export interface CreateProductoDto {
     descripcion: string | null,
     unidadMedida: UNIDADMEDIDA,
     precio: number,
-    estatus: boolean
+    estatus: boolean,
+    tipo: TIPOPRODUCTO
 }
 
 export interface GetByIdProducto {

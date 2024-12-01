@@ -10,6 +10,7 @@
     ESTADOPROD,
     ESTADOVENTA,
     METODOPAGO,
+    TIPOPRODUCTO
 } from '@prisma/client'; 
 
 export type APIResponse<T> = {
@@ -37,4 +38,5 @@ export type{
     ESTADOPROD,
     ESTADOVENTA,
     METODOPAGO,
+    TIPOPRODUCTO
 }
