@@ -1,5 +1,6 @@
 import {prisma} from '@/db/index'
 import type {Producto} from '@/lib/types'
+import {ProductoViewModel} from '@/viewModel/ProductoViewModel'
 
 export class PrismaProductoDao {
   async getAllProducto(): Promise<Producto[]> {
@@ -13,11 +14,11 @@ export class PrismaProductoDao {
       }
     })
   }
- /*  async getAllPublic(): Promise<InventarioViewModel[]> {
+  async getAllPublic(): Promise<ProductoViewModel[]> {
     let producto = await prisma.producto.findMany()
-    const productoToDto = producto.map((producto) => InventarioViewModel.toDto(producto))
+    const productoToDto = producto.map((producto) => ProductoViewModel.toDto(producto))
     return productoToDto;
-  } */
+  }
 
   //SE PUSO EL ID COMO STRING POR QUE EN EL POSTMAN NO ME DEJABA MANDAR COMO NUMERO SOLO CADENA
   async getById(id:number): Promise<Producto | null> {
