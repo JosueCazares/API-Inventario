@@ -5,6 +5,14 @@ export class PrismaProductoDao {
   async getAllProducto(): Promise<Producto[]> {
     return await prisma.producto.findMany()
   }
+
+  async getAllProductoTerminado(): Promise<Producto[]> {
+    return await prisma.producto.findMany({
+      where:{
+        tipo:'PRODUCTO_TERMINADO'
+      }
+    })
+  }
  /*  async getAllPublic(): Promise<InventarioViewModel[]> {
     let producto = await prisma.producto.findMany()
     const productoToDto = producto.map((producto) => InventarioViewModel.toDto(producto))
@@ -19,6 +27,15 @@ export class PrismaProductoDao {
         }
     })
   }
+
+    async getProductByIdProduccion(id:number): Promise<Producto | null> {
+      return await prisma.producto.findFirst({
+          where:{
+              id: id,
+              tipo:'PRODUCTO_TERMINADO'
+          }
+      })
+    }
 
   async create(productoData: Omit<Producto, 'id' | 'createdAt' | 'updatedAt'>): Promise<Producto> {
     return await prisma.producto.create({

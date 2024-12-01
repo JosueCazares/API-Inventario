@@ -35,6 +35,7 @@ export const getAllInvetario = async (req: Request, res: Response) => {
         return res.status(500).json(responseError)
     }
 }
+
 export const getInvetarioById = async (req: Request, res: Response) => {
     try{
 

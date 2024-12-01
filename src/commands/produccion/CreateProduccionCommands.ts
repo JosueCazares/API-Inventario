@@ -1,26 +1,27 @@
 import type{ Produccion,Inventario} from '@prisma/client'
 import type {CreateProduccionDto} from '@/dtos/ProduccionDto'
+import type {CreateProductoDto} from '@/dtos/ProductoDtos'
+import type {CreateInventarioDto} from '@/dtos/InventarioDto'
 import {ZodProduccionObj} from '@/validation/ZodProduccion'
 import {z, type ZodIssue} from 'zod'
 import {PrismaRecetaDao} from '@/dao/PrismaRecetaDao'
 import {PrismaInventarioDao} from '@/dao/PrismaInventarioDao'
 import {PrismaRecetaProductoDao} from '@/dao/PrismaRecetaProducto'
 import {PrismaProduccionDao} from '@/dao/PrismaProduccionDao'
+import {PrismaProductoDao} from '@/dao/PrismaProductoDao'
 import {CustomError} from '@/errors/CustomError'
 
 const recetaDao = new PrismaRecetaDao()
 const inventarioDao = new PrismaInventarioDao()
 const recetaProductoDao = new PrismaRecetaProductoDao()
 const produccionDao = new PrismaProduccionDao()
+const productoDao = new PrismaProductoDao()
 
 //COMMANDS PARA LAE CRECAION DE PORUDCCION OSE A GALLETAS, SRECUARDA EL ORDEN DE CHECAR LA EXISTENCIA DE INVENRAIO
 export class createProduccionCommand{
     async execute(data: CreateProduccionDto): Promise<Produccion>{
         const dataValidate = ZodProduccionObj.parse(data)
 
-        if(!dataValidate){
-            throw new z.ZodError(dataValidate)
-        }
         //VERIFICAR EXISTENCIA DE RECETA 
         const receta = await recetaDao.getById(dataValidate.receta_Id)
         if(!receta ){
@@ -55,6 +56,7 @@ export class createProduccionCommand{
         for(const {producto_Id, cantidad} of productosReceta){
             await inventarioDao.reduceInventario(producto_Id,cantidad)
         }
+
         //CREAR PRODUCCION
         const dataPro:Omit<Produccion,'id'|'createdAt'|'updatedAt'>={
             receta_Id:dataValidate.receta_Id,
@@ -63,6 +65,25 @@ export class createProduccionCommand{
             fecha_fin:new Date(),
 
         }
+        //CREAR PRODUCTO TERMIANDO
+        const productoObj:CreateProductoDto={
+            nombre:receta.nombre,
+            precio:0,
+            cantidad:receta.cantidad,
+            sucursal:dataValidate.sucursal,
+            estatus:true,
+            descripcion:receta.descripcion,
+            unidadMedida:'KG',
+            tipo:'PRODUCTO_TERMINADO'
+        }
+        const newProduct =  await productoDao.create(productoObj)
+        //ACTUALIZAR INVENTARIO CON NUEVO PROUCTO DE TIPO PRODUCTO TERMINADO
+        const inventarioObj:CreateInventarioDto={
+            producto_Id: newProduct.id,
+            cantidad: receta.cantidad,
+        }
+        await inventarioDao.create(inventarioObj)
+        
         return await produccionDao.create(dataPro);
     }
 }
