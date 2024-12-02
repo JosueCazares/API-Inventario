@@ -7,3 +7,8 @@ export const ZodInventarioObj = z.object({
 export const ZodInventarioIdObj = z.object({
     id: z.number().positive(),
 })
+
+export const ZodInventarioObjUpdate = z.object({
+    cantidad: z.number().positive(),
+    idInventario: z.number().positive(),
+})

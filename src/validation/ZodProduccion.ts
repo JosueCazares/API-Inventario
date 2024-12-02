@@ -5,3 +5,9 @@ export const ZodProduccionObj = z.object({
     receta_Id: z.number().positive(),
     sucursal: z.string()
 });
+
+export const ZodProduccionObjUpdate = z.object({
+    estado: z.enum([ESTADOPROD.EN_PROCESO,ESTADOPROD.PENDIENTE,ESTADOPROD.TERMINADO]),
+    id: z.number().positive(),
+    fechaFin: z.string(),
+});
