@@ -11,7 +11,8 @@ export class PrismaProduccionDao {
       include:{
         receta:{
           select:{
-            nombre:true
+            nombre:true,
+            
           }
         }
       }

@@ -6,3 +6,8 @@ export interface CreateInventarioDto {
 export interface GetByIdInventario {
     id: number
 }
+
+export interface UpdateInventarioDto {
+    cantidad: number
+    producto_Id: number
+}

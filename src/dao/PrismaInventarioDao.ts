@@ -57,4 +57,15 @@ export class PrismaInventarioDao {
       data: inventarioData
     })
   }
+
+  async update(id:number,cantidad:number): Promise<Inventario> {
+    return await prisma.inventario.update({
+     where:{
+      id: id
+     },
+     data:{
+      cantidad:cantidad
+     } 
+    })
+  }
 }
