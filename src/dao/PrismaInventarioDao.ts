@@ -64,7 +64,9 @@ export class PrismaInventarioDao {
       id: id
      },
      data:{
-      cantidad:cantidad
+      cantidad:{
+        increment: cantidad
+      }
      } 
     })
   }
