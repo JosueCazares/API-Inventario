@@ -28,9 +28,9 @@ export class CreateDetalleVentaCommands {
         }
 
         //VERIFICACION DE EXISTENCIA DE STOCK
-        const productStock = await invetarioDao.getByIdProducto(dataValidate.producto_Id)
+        const productStock = await productoDao.getById(dataValidate.producto_Id)
         if(!productStock || productStock.cantidad < dataValidate.cantidad){
-            throw new CustomError('Producto sin existencias suficeintes',404)
+            throw new CustomError('Producto sin existencias suficientes',404)
         }
 
         //CREACION DE NUEVA VENTA
@@ -51,6 +51,7 @@ export class CreateDetalleVentaCommands {
         const newDetalleVenta = await detalleVentaDao.create(detalleVenta)
         //ACTUALIZACION DE STOCK
         await invetarioDao.reduceInventario(dataValidate.producto_Id,dataValidate.cantidad)
+        await productoDao.reduceProducto(dataValidate.producto_Id,dataValidate.cantidad)
 
         return newDetalleVenta
 
