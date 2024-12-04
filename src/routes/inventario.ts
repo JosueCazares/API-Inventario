@@ -8,4 +8,4 @@ router.post('/',createInventario)
 
 router.post('/ById',getInvetarioById)
 
-router.put('/',updateInventario)
+router.put('/put',updateInventario)

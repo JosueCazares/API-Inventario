@@ -6,7 +6,7 @@ export class PrismaVentaDao {
     return await prisma.venta.findMany()
   }
 
-  async create(data: Omit<Venta, 'id'|'createdAt'|'updatedAt'>): Promise<Venta> {
+  async create(data: Omit<Venta, 'id'|'updatedAt'>): Promise<Venta> {
     return await prisma.venta.create({
       data: data
     })

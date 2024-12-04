@@ -52,4 +52,15 @@ export class PrismaProductoDao {
     })
   }
 
+  async reduceProducto(id: number, cantidad: number) {
+    return  await prisma.producto.updateMany({
+     where: {id: id},
+     data:{
+        cantidad:{
+          decrement: cantidad
+        }
+     }
+    })
+  }
+
 }
