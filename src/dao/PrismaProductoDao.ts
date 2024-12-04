@@ -51,7 +51,7 @@ export class PrismaProductoDao {
       data: productoData
     })
   }
-
+  //METODO QUEDARA OBSOLETO POR QUE SE CAMBIARA A ELIMINACION DE PRODUCTO
   async reduceProducto(id: number, cantidad: number) {
     return  await prisma.producto.updateMany({
      where: {id: id},
@@ -62,5 +62,12 @@ export class PrismaProductoDao {
      }
     })
   }
+
+    async delete(id:number){
+      return await prisma.producto.delete({
+        where:{
+          id:id
+      }})
+    }
 
 }

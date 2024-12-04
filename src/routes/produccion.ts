@@ -1,10 +1,12 @@
 import {Router} from 'express'
-import {getAllProduccion,createProduccion,getAllProReceta,updateProduccion} from '@/controller/ProduccionController'
+import {getAllPublic,createProduccion,getAllProReceta,updateProduccion,getAllPublicTodo} from '@/controller/ProduccionController'
  
 export const router = Router()
 
 
-router.get('/',getAllProReceta)
+router.get('/',getAllPublic)
+
+router.get('/AllPublic',getAllPublicTodo)
 
 router.post('/',createProduccion)
 
