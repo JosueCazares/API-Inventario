@@ -40,7 +40,7 @@ export class PrismaInventarioDao {
       }
     })
   }
-
+  //METODO PARA REDUCRI EL INVENATIO, QUEDADRA OBSOLETOPOR QUE SE CAMBIARA A ELIMINACION DE INVENTARIO
   async reduceInventario(id: number, cantidad: number) {
     return  await prisma.inventario.updateMany({
      where: {producto_Id: id},
@@ -52,6 +52,14 @@ export class PrismaInventarioDao {
     })
   }
 
+  async delete(id:number){
+    return await prisma.inventario.delete({
+      where:{
+        id:id
+      }
+    })
+  }
+  
   async create(inventarioData: Omit<Inventario, 'id' | 'createdAt' | 'updatedAt'>): Promise<Inventario> {
     return await prisma.inventario.create({
       data: inventarioData

@@ -1,9 +1,20 @@
 import {prisma} from '@/db/index'
 import type {Produccion} from '@/lib/types'
+import {ProduccionViewModel} from '@/viewModel/ProduccionViewModel'
 
 export class PrismaProduccionDao {
+  //metodo para retorno de produccion sin receta
   async getAllProduccion(): Promise<Produccion[]> {
-    return await prisma.produccion.findMany()
+    return await prisma.produccion.findMany({
+      include:{
+        receta:{
+          select:{
+            nombre:true,
+            
+          }
+        }
+      }
+    })
   }
 
   async getById(id:number): Promise<Produccion | null> {
@@ -13,9 +24,7 @@ export class PrismaProduccionDao {
       }
     })
   }
-  
-
-
+  //metodo para retorno de produccion sin receta
   async getAllProReceta(): Promise<Produccion[]> {
     return await prisma.produccion.findMany({
       include:{
@@ -27,6 +36,21 @@ export class PrismaProduccionDao {
         }
       }
     })
+  }
+
+  async getAllPublic(): Promise<ProduccionViewModel[]>{
+    let producccion = await  prisma.produccion.findMany({
+      include:{
+        receta:{
+          select:{
+            nombre:true,
+            
+          }
+        }
+      }
+    })
+    const produccionDto = producccion.map((produccion)=>ProduccionViewModel.toDto(produccion))
+    return produccionDto;
   }
   
 

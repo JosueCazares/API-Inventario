@@ -48,6 +48,7 @@ export class CreateDetalleVentaCommands {
         }
         const newDetalleVenta = await detalleVentaDao.create(detalleVenta)
         //ACTUALIZACION DE STOCK
+        //ESTOS METODOS SOLO RESTAN EL STOKC, PERO SI SE QUEDA EN 0 NO SE ELIMINA EL PRODUCTO, SE DEBERA ELIMIANAR?
         await invetarioDao.reduceInventario(dataValidate.producto_Id,dataValidate.cantidad)
         await productoDao.reduceProducto(dataValidate.producto_Id,dataValidate.cantidad)
 
