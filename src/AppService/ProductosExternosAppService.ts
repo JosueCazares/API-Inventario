@@ -15,9 +15,9 @@ export class ProductosExpertnosAppService {
             throw new Error('No se han definido las URL de los servicios externos');
         }
         const responseJasso = await this.fetchApi(API_JASSO);
-        console.log(responseJasso);
         const responseUlises = await this.fetchApi(API_ULISSES);
         const responseIsac = await this.fetchApi(API_ISAC);
+        console.log(responseIsac);
         const responseBero = await this.fetchApi(API_BERO);
         //console.log('API_ULISSES', API_ULISSES);
         //console.log(responseBero);

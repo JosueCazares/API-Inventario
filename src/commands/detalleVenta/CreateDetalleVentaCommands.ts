@@ -35,9 +35,7 @@ export class CreateDetalleVentaCommands {
 
         //CREACION DE NUEVA VENTA
         const venta:CreateVentaDto={
-            sucursal: dataValidate.sucursal,
-            estado:dataValidate.estado,
-            metodoPago:dataValidate.metodoPago,
+           createdAt: new Date(),
         }
         const newVenta = await ventaDao.create(venta)
         //CREACION DE NUEVO DETALLE DE VENTA

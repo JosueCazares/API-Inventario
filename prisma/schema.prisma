@@ -46,9 +46,6 @@ model Venta {
   id           Int            @id @default(autoincrement())
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
-  sucursal     String
-  estado       ESTADOVENTA
-  metodoPago   METODOPAGO
   detalleVenta DetalleVenta[]
 }
 
